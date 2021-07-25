@@ -30,25 +30,54 @@ fetch(url_placeholder)
 	})
 
 
-const url_finance = `https://cbr.ru/scripts/XML_dynamic.asp?date_req1=02/03/2001&date_req2=14/03/2001&VAL_NM_RQ=R01235`;
-fetch(url_finance, {headers:{
+// const url_finance = `https://cbr.ru/scripts/XML_dynamic.asp?date_req1=02/03/2001&date_req2=14/03/2001&VAL_NM_RQ=R01235`;
+// fetch(url_finance, {headers:{
 	// 'Access-Control-Allow-Origin': 'no-cors',
 	// origin:'no-cors',
-	mode:'no-cors',
-}
-})
-	.then(response =>{
-		// if(response.ok){
-			return response.text()
+// 	mode:'no-cors',
+// }
+// })
+// 	.then(response =>{
+// 		// if(response.ok){
+// 			return response.text()
 			// console.log(`statys HTTPS : ${response.status}`)
 			// console.log(response);
 		// }else{
 		// 	console.log(response.status)
 		// }
 
-	})
-	.then(text => {
-		console.log(text)
-	})
+// 	})
+// 	.then(text => {
+// 		console.log(text)
+// 	})
 
-// saddas
+
+
+function summ( a, b ){
+	return a+b;
+}
+
+
+// Create function - decorator
+// The purpose of the decorator is to create hash
+// 1. Universal decorator
+// 2. Call forwardind
+
+function decoratorSetHesh(func){
+	// the function has closed the values of variables in itself
+	// func = fn
+	// arr = []
+	// and return new  function
+	const hash = {};
+
+	return function(a,b){
+		if(hash[a+b]){
+			console.log(111);
+			return hash[a+b];
+		}
+
+		hash[a+b] = func(a,b)
+		console.log(hash)
+		return func(a,b) 
+	}
+}
